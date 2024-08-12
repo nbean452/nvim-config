@@ -9,7 +9,6 @@ map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 
 vim.api.nvim_set_keymap("n", "s", "<Plug>(easymotion-s2)", {})
-vim.api.nvim_set_keymap("n", "t", "<Plug>(easymotion-t2)", {})
 
 vim.g.copilot_no_tab_map = true
 map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
