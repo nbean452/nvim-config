@@ -1,7 +1,9 @@
-return {
-  -- lightspeed.nvim
-  {
-    "ggandor/lightspeed.nvim",
-    lazy = false,
-  },
-}
+-- return {
+--   -- lightspeed.nvim
+--   {
+--     "ggandor/lightspeed.nvim",
+--     lazy = false,
+--   },
+-- }
+
+return {}
