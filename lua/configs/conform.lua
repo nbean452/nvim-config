@@ -22,10 +22,9 @@ end
 local options = {
   formatters_by_ft = formatters_by_ft,
 
-  format_on_save = {
+  format_after_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_fallback = true,
+    lsp_format = true,
   },
 }
 
