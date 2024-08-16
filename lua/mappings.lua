@@ -46,3 +46,12 @@ end
 
 -- Map the toggle function to Ctrl+K
 vim.api.nvim_set_keymap("i", "<C-k>", "<Cmd>lua cmp_toggle()<CR>", { noremap = true, silent = true })
+
+local opts = { noremap = true, silent = true }
+
+-- Use vim.keymap.set for a more Neovim-like style
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", opts)
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
+vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
