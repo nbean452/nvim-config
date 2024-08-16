@@ -37,3 +37,18 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Additional configurations
+vim.schedule(function()
+  vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+
+  -- Set relative number and number
+  vim.opt.number = true -- equivalent to 'set nu'
+  vim.opt.relativenumber = true -- equivalent to 'set rnu'
+
+  -- Set scrolloff
+  vim.opt.scrolloff = 5 -- equivalent to 'set scrolloff=5'
+
+  -- Set linebreak
+  vim.opt.linebreak = true -- equivalent to 'set linebreak'
+end)

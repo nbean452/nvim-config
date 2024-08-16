@@ -11,7 +11,6 @@ set smartcase
 "turn on syntax highlighting
 syntax on
 
-
 imap jk <Esc>
 imap kj <Esc>
 
