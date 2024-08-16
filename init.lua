@@ -40,7 +40,7 @@ end)
 
 -- Additional configurations
 vim.schedule(function()
-  vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 
   -- Set relative number and number
   vim.opt.number = true -- equivalent to 'set nu'

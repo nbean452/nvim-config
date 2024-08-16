@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "onedark",
+  theme = "everforest",
 
   telescope = { style = "bordered" }, -- borderless / bordered
 
