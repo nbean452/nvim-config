@@ -1,14 +1,11 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePost", -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
     lazy = false,
-    -- opts = {
-    --   cmd = { "Conform" },
-    -- },
   },
 
   -- These are some examples, uncomment them if you want to see them work!

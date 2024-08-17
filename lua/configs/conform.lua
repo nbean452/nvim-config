@@ -1,13 +1,16 @@
 local prettier_filetypes = {
   "css",
   "html",
-  "javascript",
-  "javascriptreact",
   "json",
   "markdown",
   "scss",
+}
+
+local eslint_prettier_filetypes = {
   "typescript",
+  "javascript",
   "typescriptreact",
+  "javascriptreact",
 }
 
 local formatters_by_ft = {
@@ -19,10 +22,14 @@ for _, filetype in ipairs(prettier_filetypes) do
   formatters_by_ft[filetype] = { "prettier" }
 end
 
+for _, filetype in ipairs(eslint_prettier_filetypes) do
+  formatters_by_ft[filetype] = {}
+end
+
 local options = {
   formatters_by_ft = formatters_by_ft,
 
-  format_after_save = {
+  format_on_save = {
     -- These options will be passed to conform.format()
     lsp_format = true,
   },
