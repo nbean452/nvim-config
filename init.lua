@@ -47,7 +47,7 @@ vim.schedule(function()
   vim.opt.relativenumber = true -- equivalent to 'set rnu'
 
   -- Set scrolloff
-  vim.opt.scrolloff = 999 -- equivalent to 'set scrolloff=999'
+  vim.opt.scrolloff = 5 -- equivalent to 'set scrolloff=5'
 
   -- Set linebreak
   vim.opt.linebreak = true -- equivalent to 'set linebreak'
