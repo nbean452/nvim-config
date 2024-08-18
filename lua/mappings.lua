@@ -21,6 +21,10 @@ map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
 
+-- mapping for ggandor/leap.nvim
+vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+
 -- close references window after pressing enter
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
