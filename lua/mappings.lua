@@ -12,18 +12,18 @@ vim.g.copilot_no_tab_map = true
 map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
 
 -- go to next/prev diagnostic
-vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
+map("n", "]g", vim.diagnostic.goto_next)
+map("n", "[g", vim.diagnostic.goto_prev)
 
 -- mapping for ggandor/leap.nvim
-vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
-vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+map({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+map({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
 
 -- close references window after pressing enter
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     local bufnr = vim.fn.bufnr "%"
-    vim.keymap.set("n", "<cr>", function()
+    map("n", "<cr>", function()
       vim.api.nvim_command [[execute "normal! \<cr>"]]
       vim.api.nvim_command(bufnr .. "bd")
     end, { buffer = bufnr })
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
 local cmp = require "cmp"
 
 -- Create a toggle function
-function _G.cmp_toggle()
+local function cmp_toggle()
   if cmp.visible() then
     cmp.close()
   else
@@ -42,14 +42,41 @@ function _G.cmp_toggle()
   end
 end
 
--- Map the toggle function to Ctrl+K
-vim.api.nvim_set_keymap("i", "<C-k>", "<Cmd>lua cmp_toggle()<CR>", { noremap = true, silent = true })
+local function toggle_line()
+  require("Comment.api").toggle.linewise.current()
+end
+
+vim.api.nvim_del_keymap("n", "<leader>th")
+
+-- if you wanna set theme, uncomment
+-- map(
+--   "n",
+--   "<leader>th",
+--   "<cmd>lua require('telescope.builtin').help_tags()<CR>",
+--   { noremap = true, silent = true }
+-- )
 
 local opts = { noremap = true, silent = true }
 
--- Use vim.keymap.set for a more Neovim-like style
-vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", opts)
-vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
-vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
-vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
-vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
+-- Map the comment functions to <leader>t
+vim.api.nvim_del_keymap("n", "<leader>/")
+vim.api.nvim_del_keymap("v", "<leader>/")
+-- Mapping for normal mode
+map("n", "<leader>t", toggle_line, { desc = "Toggle comment line", noremap = true, silent = true })
+-- Mapping for visual mode
+map(
+  "v",
+  "<leader>t",
+  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  { desc = "Toggle selection", noremap = true, silent = true }
+)
+
+-- Map the toggle completion function to Ctrl+K
+map("i", "<C-k>", cmp_toggle, opts)
+
+-- Tmux navigation in normal mode
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", opts)
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
+map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
