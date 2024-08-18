@@ -4,18 +4,12 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
--- map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
-
--- easymotion-s2
-vim.api.nvim_set_keymap("n", "s", "<Plug>(easymotion-s2)", {})
 
 -- copilot
 vim.g.copilot_no_tab_map = true
 map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
-
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- go to next/prev diagnostic
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
