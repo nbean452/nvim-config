@@ -19,11 +19,11 @@ local formatters_by_ft = {
 }
 
 for _, filetype in ipairs(prettier_filetypes) do
-  formatters_by_ft[filetype] = { "prettier" }
+  formatters_by_ft[filetype] = { "prettierd" }
 end
 
 for _, filetype in ipairs(eslint_prettier_filetypes) do
-  formatters_by_ft[filetype] = {}
+  formatters_by_ft[filetype] = { "prettierd", "eslint_d" }
 end
 
 local options = {
