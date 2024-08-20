@@ -4,6 +4,8 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+local nomap = vim.keymap.del
+
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 
@@ -14,10 +16,6 @@ map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent
 -- go to next/prev diagnostic
 map("n", "]g", vim.diagnostic.goto_next)
 map("n", "[g", vim.diagnostic.goto_prev)
-
--- mapping for ggandor/leap.nvim
-map({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
-map({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
 
 -- close references window after pressing enter
 vim.api.nvim_create_autocmd("FileType", {
@@ -46,7 +44,7 @@ local function toggle_line()
   require("Comment.api").toggle.linewise.current()
 end
 
-vim.api.nvim_del_keymap("n", "<leader>th")
+nomap("n", "<leader>th")
 
 -- if you wanna set theme, uncomment
 -- map(
@@ -59,8 +57,9 @@ vim.api.nvim_del_keymap("n", "<leader>th")
 local opts = { noremap = true, silent = true }
 
 -- Map the comment functions to <leader>t
-vim.api.nvim_del_keymap("n", "<leader>/")
-vim.api.nvim_del_keymap("v", "<leader>/")
+nomap("n", "<leader>/")
+nomap("v", "<leader>/")
+
 -- Mapping for normal mode
 map("n", "<leader>t", toggle_line, { desc = "Toggle comment line", noremap = true, silent = true })
 -- Mapping for visual mode
