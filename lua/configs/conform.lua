@@ -26,6 +26,8 @@ for _, filetype in ipairs(eslint_prettier_filetypes) do
   formatters_by_ft[filetype] = { "prettierd", "eslint_d" }
 end
 
+formatters_by_ft["java"] = { "google-java-format" }
+
 local options = {
   formatters_by_ft = formatters_by_ft,
 

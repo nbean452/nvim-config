@@ -8,7 +8,7 @@ local servers = {
   "cssls",
   "tsserver",
   "eslint",
-  "java_language_server",
+  "jdtls",
   "docker_compose_language_service",
   "dockerls",
   "clangd",
@@ -29,3 +29,5 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+lspconfig.jdtls.setup {}

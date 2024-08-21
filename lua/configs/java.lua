@@ -1,0 +1,3 @@
+require("java").setup {
+  -- extra config here...
+}
