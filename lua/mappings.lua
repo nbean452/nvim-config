@@ -46,6 +46,8 @@ end
 
 nomap("n", "<leader>th")
 
+map("n", "<leader>mt", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
+
 -- if you wanna set theme, uncomment
 -- map(
 --   "n",
