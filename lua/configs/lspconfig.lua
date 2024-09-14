@@ -6,7 +6,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
-  "tsserver",
+  "ts_ls",
   "eslint",
   "jdtls",
   "docker_compose_language_service",
