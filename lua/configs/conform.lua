@@ -27,6 +27,7 @@ for _, filetype in ipairs(eslint_prettier_filetypes) do
 end
 
 formatters_by_ft["java"] = { "google-java-format" }
+formatters_by_ft["c"] = { "clang-format" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,

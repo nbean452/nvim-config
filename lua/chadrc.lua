@@ -4,15 +4,41 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
-  theme = "everforest",
+M = {
+  ui = {
+    theme = "everforest",
 
-  telescope = { style = "bordered" }, -- borderless / bordered
+    telescope = { style = "bordered" }, -- borderless / bordered
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+    -- hl_override = {
+    -- 	Comment = { italic = true },
+    -- 	["@comment"] = { italic = true },
+    -- },
+  },
+
+  mason = {
+    pkgs = {
+      "clang-format",
+      "jdtls",
+      "isort",
+      "black",
+      "pyright",
+      "clangd",
+      "prettierd",
+      "google-java-format",
+      "eslint_d",
+      "typescript-language-server",
+      "css-lsp",
+      "eslint-lsp",
+      "html-lsp",
+      "lua-language-server",
+      "tailwindcss-language-server",
+      "stylua",
+      "dockerfile-language-server",
+      "docker-compose-language-service",
+      "prettier",
+    },
+  },
 }
 
 return M
