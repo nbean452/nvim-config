@@ -58,6 +58,8 @@ return {
         "c",
         "cpp",
         "java",
+        "kotlin",
+        "xml",
       },
     },
   },

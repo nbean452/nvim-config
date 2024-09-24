@@ -13,6 +13,11 @@ local eslint_prettier_filetypes = {
   "javascriptreact",
 }
 
+local clang_format_filetypes = {
+  "c",
+  "cpp",
+}
+
 local formatters_by_ft = {
   lua = { "stylua" },
   python = { "isort", "black" },
@@ -26,8 +31,13 @@ for _, filetype in ipairs(eslint_prettier_filetypes) do
   formatters_by_ft[filetype] = { "prettierd", "eslint_d" }
 end
 
+for _, filetype in ipairs(clang_format_filetypes) do
+  formatters_by_ft[filetype] = { "clang-format" }
+end
+
 formatters_by_ft["java"] = { "google-java-format" }
-formatters_by_ft["c"] = { "clang-format" }
+formatters_by_ft["xml"] = { "xmlformatter" }
+formatters_by_ft["php"] = { "phpactor" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,

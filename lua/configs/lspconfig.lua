@@ -13,6 +13,11 @@ local servers = {
   "dockerls",
   "clangd",
   "tailwindcss",
+  "jsonls",
+  "lemminx",
+  -- something wrong with this lsp
+  -- "kotlin_language_server",
+  "phpactor",
 }
 
 -- lsps with default config

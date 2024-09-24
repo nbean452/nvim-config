@@ -18,6 +18,9 @@ M = {
 
   mason = {
     pkgs = {
+      "phpactor",
+      "lemminx",
+      "xmlformatter",
       "clang-format",
       "jdtls",
       "isort",
