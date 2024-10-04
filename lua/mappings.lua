@@ -49,7 +49,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- unmap default keybinding for theme and set it to `<leader>mt`
 nomap("n", "<leader>th")
-map("n", "<leader>mt", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
+map("n", "<leader>mt", function()
+  require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
 
 -- Map the comment functions to <leader>t
 nomap("n", "<leader>/")
