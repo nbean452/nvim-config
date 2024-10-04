@@ -8,6 +8,6 @@ return {
       "TmuxNavigateRight",
       "TmuxNavigatePrevious",
     },
-    -- lazy = false,
+    lazy = false,
   },
 }
