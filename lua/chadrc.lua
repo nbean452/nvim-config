@@ -40,6 +40,7 @@ M = {
       "dockerfile-language-server",
       "docker-compose-language-service",
       "prettier",
+      "harper-ls",
     },
   },
 }

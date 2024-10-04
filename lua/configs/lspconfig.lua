@@ -36,3 +36,9 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.jdtls.setup {}
+
+-- config for `harper-ls` for better grammar
+lspconfig.harper_ls.setup {
+  -- change filetypes that are supported
+  filetypes = { "markdown", "txt", "pandoc" },
+}
