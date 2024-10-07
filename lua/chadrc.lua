@@ -17,7 +17,7 @@ M = {
   },
 
   ui = {
-    telescope = { style = "bordered" }, -- borderless / bordered
+    telescope = { style = "borderless" }, -- borderless / bordered
   },
 
   mason = {

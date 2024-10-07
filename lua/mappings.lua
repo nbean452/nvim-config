@@ -58,24 +58,24 @@ vim.api.nvim_create_autocmd("FileType", {
 nomap("n", "<leader>h")
 nomap("n", "<leader>fh")
 
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
+-- local conf = require("telescope.config").values
+-- local function toggle_telescope(harpoon_files)
+--   local file_paths = {}
+--   for _, item in ipairs(harpoon_files.items) do
+--     table.insert(file_paths, item.value)
+--   end
+--
+--   require("telescope.pickers")
+--     .new({}, {
+--       prompt_title = "Harpoon",
+--       finder = require("telescope.finders").new_table {
+--         results = file_paths,
+--       },
+--       previewer = conf.file_previewer {},
+--       sorter = conf.generic_sorter {},
+--     })
+--     :find()
+-- end
 
 -- Add current buffer to Harpoon list
 map("n", "<C-q>a", function()
@@ -84,13 +84,13 @@ end, { desc = "add current buffer to harpoon list" })
 
 -- Toggle Harpoon menu
 -- using telescope to show harpoon menu
-map("n", "<C-e>", function()
-  toggle_telescope(harpoon:list())
-end, { desc = "open harpoon menu" })
--- using native harpoon menu
 -- map("n", "<C-e>", function()
---   harpoon.ui:toggle_quick_menu(harpoon:list())
+--   toggle_telescope(harpoon:list())
 -- end, { desc = "open harpoon menu" })
+-- using native harpoon menu
+map("n", "<C-e>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
 map("n", "<C-q>q", function()

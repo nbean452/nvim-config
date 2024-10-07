@@ -15,8 +15,6 @@ local servers = {
   "tailwindcss",
   "jsonls",
   "lemminx",
-  -- something wrong with this lsp
-  -- "kotlin_language_server",
   "phpactor",
 
   "pyright",
