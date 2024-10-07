@@ -6,7 +6,7 @@ return {
       "TmuxNavigateDown",
       "TmuxNavigateUp",
       "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
+      -- "TmuxNavigatePrevious",
     },
     lazy = false,
   },
