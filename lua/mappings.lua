@@ -58,56 +58,60 @@ vim.api.nvim_create_autocmd("FileType", {
 nomap("n", "<leader>h")
 nomap("n", "<leader>fh")
 
-local map = vim.keymap.set
+-- unmap toggle between lines for cursor, idk the name
+-- nomap("n", "<C-q>")
 
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
+-- local conf = require("telescope.config").values
+-- local function toggle_telescope(harpoon_files)
+--   local file_paths = {}
+--   for _, item in ipairs(harpoon_files.items) do
+--     table.insert(file_paths, item.value)
+--   end
+--
+--   require("telescope.pickers")
+--     .new({}, {
+--       prompt_title = "Harpoon",
+--       finder = require("telescope.finders").new_table {
+--         results = file_paths,
+--       },
+--       previewer = conf.file_previewer {},
+--       sorter = conf.generic_sorter {},
+--     })
+--     :find()
+-- end
 
 -- Add current buffer to Harpoon list
-map("n", "<leader>ha", function()
+map("n", "<C-q>a", function()
   harpoon:list():add()
 end, { desc = "add current buffer to harpoon list" })
 
 -- Toggle Harpoon menu
-map("n", "<leader>fh", function()
-  toggle_telescope(harpoon:list())
+-- map("n", "<C-e>", function()
+--   toggle_telescope(harpoon:list())
+-- end, { desc = "open harpoon menu" })
+map("n", "<C-e>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
-map("n", "<leader>hq", function()
+map("n", "<C-q>q", function()
   harpoon:list():select(1)
 end, { desc = "select harpoon file 1" })
-map("n", "<leader>hw", function()
+map("n", "<C-q>w", function()
   harpoon:list():select(2)
 end, { desc = "select harpoon file 2" })
-map("n", "<leader>he", function()
+map("n", "<C-q>e", function()
   harpoon:list():select(3)
 end, { desc = "select harpoon file 3" })
-map("n", "<leader>hr", function()
+map("n", "<C-q>r", function()
   harpoon:list():select(4)
 end, { desc = "select harpoon file 4" })
 
 -- Toggle previous & next buffers stored within Harpoon list
-map("n", "<leader>hs", function()
+map("n", "<C-q>s", function()
   harpoon:list():prev()
 end, { desc = "cycle to previous harpoon file" })
-map("n", "<leader>hd", function()
+map("n", "<C-q>d", function()
   harpoon:list():next()
 end, { desc = "cycle to next harpoon file" })
 
