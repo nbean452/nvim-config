@@ -16,9 +16,9 @@ local servers = {
   "jsonls",
   "lemminx",
   "phpactor",
-
   "pyright",
   "jdtls",
+  "cmake",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 

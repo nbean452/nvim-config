@@ -34,6 +34,7 @@ return {
 
         -- heavy stuff
         "c",
+        "cmake",
         "cpp",
         "java",
         "kotlin",
