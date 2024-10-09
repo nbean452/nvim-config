@@ -41,6 +41,9 @@ map("i", "kj", "<ESC>")
 map("n", "]g", vim.diagnostic.goto_next)
 map("n", "[g", vim.diagnostic.goto_prev)
 
+-- Close other buffers except this one
+map("n", "<leader>db", ":%bd|e#<CR>", opts)
+
 -- Map the toggle completion function to Ctrl+K
 map("i", "<C-k>", cmp_toggle, opts)
 
@@ -55,8 +58,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Disable default NVChad keybindings
-nomap("n", "<leader>h")
-nomap("n", "<leader>fh")
+-- nomap("n", "<C-i>")
+-- nomap("n", "<C-o>")
 
 -- local conf = require("telescope.config").values
 -- local function toggle_telescope(harpoon_files)
@@ -77,10 +80,10 @@ nomap("n", "<leader>fh")
 --     :find()
 -- end
 
--- Add current buffer to Harpoon list
-map("n", "<C-q>a", function()
+-- Add current buffer to Harpoon list, TODO: Change to toggle instead of adding
+map("n", "<leader>q", function()
   harpoon:list():add()
-end, { desc = "add current buffer to harpoon list" })
+end, { desc = "add/remove current buffer to harpoon list" })
 
 -- Toggle Harpoon menu
 -- using telescope to show harpoon menu
@@ -93,24 +96,24 @@ map("n", "<C-e>", function()
 end, { desc = "open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
-map("n", "<C-q>q", function()
+map("n", "<C-q>", function()
   harpoon:list():select(1)
 end, { desc = "select harpoon file 1" })
-map("n", "<C-q>w", function()
+map("n", "<C-x>", function()
   harpoon:list():select(2)
 end, { desc = "select harpoon file 2" })
-map("n", "<C-q>e", function()
+map("n", "<C-i>", function()
   harpoon:list():select(3)
 end, { desc = "select harpoon file 3" })
-map("n", "<C-q>r", function()
+map("n", "<C-o>", function()
   harpoon:list():select(4)
 end, { desc = "select harpoon file 4" })
 
 -- Toggle previous & next buffers stored within Harpoon list
-map("n", "<C-q>s", function()
+map("n", "<C-q>p", function()
   harpoon:list():prev()
 end, { desc = "cycle to previous harpoon file" })
-map("n", "<C-q>d", function()
+map("n", "<C-q>n", function()
   harpoon:list():next()
 end, { desc = "cycle to next harpoon file" })
 
@@ -137,3 +140,20 @@ map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
 map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
 -- map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
+
+-- harpoon extension
+harpoon:extend {
+  UI_CREATE = function(cx)
+    vim.keymap.set("n", "<C-v>", function()
+      harpoon.ui:select_menu_item { vsplit = true }
+    end, { buffer = cx.bufnr })
+
+    -- vim.keymap.set("n", "<C-x>", function()
+    --   harpoon.ui:select_menu_item { split = true }
+    -- end, { buffer = cx.bufnr })
+
+    -- vim.keymap.set("n", "<C-t>", function()
+    --   harpoon.ui:select_menu_item { tabedit = true }
+    -- end, { buffer = cx.bufnr })
+  end,
+}
