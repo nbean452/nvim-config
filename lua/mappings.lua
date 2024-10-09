@@ -48,8 +48,8 @@ map("n", "<leader>db", ":%bd|e#<CR>", opts)
 map("i", "<C-k>", cmp_toggle, opts)
 
 -- copilot
-vim.g.copilot_no_tab_map = true
-map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
+-- vim.g.copilot_no_tab_map = true
+-- map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
 
 -- close references window after pressing enter
 vim.api.nvim_create_autocmd("FileType", {
