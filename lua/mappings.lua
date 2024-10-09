@@ -80,14 +80,27 @@ vim.api.nvim_create_autocmd("FileType", {
 --     :find()
 -- end
 
--- Add current buffer to Harpoon list, TODO: Change to toggle instead of adding
+-- Add current buffer to Harpoon list
 map("n", "<leader>q", function()
-  harpoon:list():add()
+  -- get current buffer name
+  local bufname = vim.fn.bufname "%"
+
+  -- get buffer value given the buffer name that we provided
+  -- if `name` is empty, add to harpoon
+  local name, _ = harpoon:list():get_by_value(bufname)
+
+  if name == nil then
+    harpoon:list():add()
+    print("added " .. bufname)
+  else
+    harpoon:list():remove()
+    print("removed " .. bufname)
+  end
 end, { desc = "add/remove current buffer to harpoon list" })
 
 -- Toggle Harpoon menu
 -- using telescope to show harpoon menu
--- map("n", "<C-e>", function()
+-- map("n", "<C-q>", function()
 --   toggle_telescope(harpoon:list())
 -- end, { desc = "open harpoon menu" })
 -- using native harpoon menu
@@ -96,16 +109,16 @@ map("n", "<C-e>", function()
 end, { desc = "open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
-map("n", "<C-q>", function()
+map("n", "<C-x>", function()
   harpoon:list():select(1)
 end, { desc = "select harpoon file 1" })
-map("n", "<C-x>", function()
+map("n", "<C-v>", function()
   harpoon:list():select(2)
 end, { desc = "select harpoon file 2" })
-map("n", "<C-i>", function()
+map("n", "<C-b>", function()
   harpoon:list():select(3)
 end, { desc = "select harpoon file 3" })
-map("n", "<C-o>", function()
+map("n", "<C-m>", function()
   harpoon:list():select(4)
 end, { desc = "select harpoon file 4" })
 
