@@ -44,8 +44,16 @@ map("n", "[g", vim.diagnostic.goto_prev)
 -- Close other buffers except this one
 map("n", "<leader>db", ":%bd|e#<CR>", opts)
 
--- Map the toggle completion function to Ctrl+K
-map("i", "<C-k>", cmp_toggle, opts)
+-- disable cursor movement in insert mode
+nomap("i", "<C-b>")
+nomap("i", "<C-e>")
+nomap("i", "<C-h>")
+nomap("i", "<C-l>")
+nomap("i", "<C-j>")
+nomap("i", "<C-k>")
+
+-- map completion toggle to Ctrl+e
+map("i", "<C-e>", cmp_toggle, opts)
 
 -- copilot
 -- vim.g.copilot_no_tab_map = true
@@ -80,8 +88,14 @@ vim.api.nvim_create_autocmd("FileType", {
 --     :find()
 -- end
 
+-- unmap default conform mapping
+nomap("n", "<leader>fm")
+map("n", "<leader>fm", function()
+  require("conform").format { async = true, lsp_fallback = true }
+end, { desc = "General Format file" })
+
 -- Add current buffer to Harpoon list
-map("n", "<leader>q", function()
+map("n", "<C-q>f", function()
   -- get current buffer name
   local bufname = vim.fn.bufname "%"
 
@@ -109,16 +123,16 @@ map("n", "<C-e>", function()
 end, { desc = "open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
-map("n", "<C-x>", function()
+map("n", "<C-f>", function()
   harpoon:list():select(1)
 end, { desc = "select harpoon file 1" })
-map("n", "<C-v>", function()
+map("n", "<C-x>", function()
   harpoon:list():select(2)
 end, { desc = "select harpoon file 2" })
 map("n", "<C-b>", function()
   harpoon:list():select(3)
 end, { desc = "select harpoon file 3" })
-map("n", "<C-m>", function()
+map("n", "<C-p>", function()
   harpoon:list():select(4)
 end, { desc = "select harpoon file 4" })
 

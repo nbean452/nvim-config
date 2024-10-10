@@ -42,10 +42,10 @@ formatters_by_ft["php"] = { "phpactor" }
 local options = {
   formatters_by_ft = formatters_by_ft,
 
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    lsp_format = true,
-  },
+  -- format_on_save = {
+  --   -- These options will be passed to conform.format()
+  --   lsp_format = true,
+  -- },
 }
 
 return options
