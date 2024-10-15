@@ -5,6 +5,10 @@ local nomap = vim.keymap.del
 
 local cmp = require "cmp"
 local harpoon = require "harpoon"
+
+local previewers = require "telescope.previewers"
+local builtin = require "telescope.builtin"
+
 local opts = { noremap = true, silent = true }
 
 -- Functions
@@ -32,6 +36,43 @@ local function close_references_window()
   end, { buffer = bufnr })
 end
 
+local delta = previewers.new_termopen_previewer {
+  get_command = function(entry)
+    -- this is for status
+    -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
+    -- just do an if and return a different command
+    if entry.status == "??" or "A " then
+      return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.path }
+    end
+
+    -- note we can't use pipes
+    -- this command is for git_commits and git_bcommits
+    return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.path .. "^!" }
+  end,
+}
+
+local delta_git_status = function(opts)
+  opts = opts or {}
+  opts.previewer = delta
+
+  builtin.git_status(opts)
+end
+
+local delta_git_commits = function(opts)
+  opts = opts or {}
+  opts.previewer = delta
+
+  builtin.git_bcommits(opts)
+end
+
+vim.keymap.set("n", "<Leader>gt", function()
+  delta_git_status()
+end, { desc = "View changed git files with delta pager" })
+
+vim.keymap.set("n", "<Leader>cm", function()
+  delta_git_commits()
+end, { desc = "View git commits with delta pager" })
+
 -- Basic mappings, other mappings are included in the `configs` folder
 
 map("i", "jk", "<ESC>")
@@ -42,7 +83,7 @@ map("n", "]g", vim.diagnostic.goto_next)
 map("n", "[g", vim.diagnostic.goto_prev)
 
 -- Close other buffers except this one
-map("n", "<leader>db", ":%bd|e#<CR>", opts)
+map("n", "<leader>db", ":%bd|e#<CR>", vim.tbl_extend("force", opts, { desc = "Delete other buffers" }))
 
 -- disable cursor movement in insert mode
 nomap("i", "<C-b>")
@@ -110,7 +151,7 @@ map("n", "<C-q>f", function()
     harpoon:list():remove()
     print("removed " .. bufname)
   end
-end, { desc = "add/remove current buffer to harpoon list" })
+end, { desc = "Add/remove current buffer to harpoon list" })
 
 -- Toggle Harpoon menu
 -- using telescope to show harpoon menu
@@ -120,45 +161,45 @@ end, { desc = "add/remove current buffer to harpoon list" })
 -- using native harpoon menu
 map("n", "<C-e>", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
-end, { desc = "open harpoon menu" })
+end, { desc = "Open harpoon menu" })
 
 -- Select buffers stored within Harpoon list
 map("n", "<C-f>", function()
   harpoon:list():select(1)
-end, { desc = "select harpoon file 1" })
+end, { desc = "Select harpoon file 1" })
 map("n", "<C-x>", function()
   harpoon:list():select(2)
-end, { desc = "select harpoon file 2" })
+end, { desc = "Select harpoon file 2" })
 map("n", "<C-b>", function()
   harpoon:list():select(3)
-end, { desc = "select harpoon file 3" })
+end, { desc = "Select harpoon file 3" })
 map("n", "<C-p>", function()
   harpoon:list():select(4)
-end, { desc = "select harpoon file 4" })
+end, { desc = "Select harpoon file 4" })
 
 -- Toggle previous & next buffers stored within Harpoon list
 map("n", "<C-q>p", function()
   harpoon:list():prev()
-end, { desc = "cycle to previous harpoon file" })
+end, { desc = "Cycle to previous harpoon file" })
 map("n", "<C-q>n", function()
   harpoon:list():next()
-end, { desc = "cycle to next harpoon file" })
+end, { desc = "Cycle to next harpoon file" })
 
 -- unmap default keybinding for theme and set it to `<leader>mt`
 nomap("n", "<leader>th")
-map("n", "<leader>mt", open_theme_menu, { desc = "telescope nvchad themes" })
+map("n", "<leader>mt", open_theme_menu, { desc = "Telescope nvchad themes" })
 
 -- Map the comment functions to <leader>t
 nomap("n", "<leader>/")
 nomap("v", "<leader>/")
 -- Mapping for normal mode
-map("n", "<leader>t", toggle_line, { desc = "Toggle comment line", noremap = true, silent = true })
+map("n", "<leader>t", toggle_line, vim.tbl_extend("force", opts, { desc = "Toggle comment line" }))
 -- Mapping for visual mode
 map(
   "v",
   "<leader>t",
   "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Toggle selection", noremap = true, silent = true }
+  vim.tbl_extend("force", opts, { desc = "Toggle selection" })
 )
 
 -- Tmux navigation in normal mode
