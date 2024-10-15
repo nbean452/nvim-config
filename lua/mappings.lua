@@ -42,12 +42,12 @@ local delta = previewers.new_termopen_previewer {
     -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
     -- just do an if and return a different command
     if entry.status == "??" or "A " then
-      return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.path }
+      return { "git", "-c", "delta.side-by-side=false", "diff", entry.value }
+    else
+      -- note we can't use pipes
+      -- this command is for git_commits and git_bcommits
+      return { "git", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!" }
     end
-
-    -- note we can't use pipes
-    -- this command is for git_commits and git_bcommits
-    return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.path .. "^!" }
   end,
 }
 
@@ -62,14 +62,17 @@ local delta_git_commits = function(opts)
   opts = opts or {}
   opts.previewer = delta
 
-  builtin.git_bcommits(opts)
+  builtin.git_commits(opts)
 end
 
-vim.keymap.set("n", "<Leader>gt", function()
+nomap("n", "<leader>gt")
+nomap("n", "<leader>cm")
+
+map("n", "<leader>gt", function()
   delta_git_status()
 end, { desc = "View changed git files with delta pager" })
 
-vim.keymap.set("n", "<Leader>cm", function()
+map("n", "<leader>cm", function()
   delta_git_commits()
 end, { desc = "View git commits with delta pager" })
 
