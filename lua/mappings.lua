@@ -212,6 +212,20 @@ map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
 -- map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
 
+-- change functionality for git
+nomap("n", "<leader>fb")
+nomap("n", "<leader>ff")
+nomap("n", "<leader>fa")
+
+map("n", "<leader>fb", "<cmd>Telescope buffers layout_strategy=vertical<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>ff", "<cmd>Telescope find_files layout_strategy=vertical<cr>", { desc = "telescope find files" })
+map(
+  "n",
+  "<leader>fa",
+  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true layout_strategy=vertical<CR>",
+  { desc = "telescope find all files" }
+)
+
 -- harpoon extension
 harpoon:extend {
   UI_CREATE = function(cx)
