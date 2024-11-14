@@ -105,8 +105,8 @@ nomap("i", "<C-l>")
 nomap("i", "<C-j>")
 nomap("i", "<C-k>")
 
--- map completion toggle to Ctrl+e
-map("i", "<C-e>", cmp_toggle, opts)
+-- map completion toggle to Ctrl+k
+map("i", "<C-k>", cmp_toggle, opts)
 
 -- copilot
 -- vim.g.copilot_no_tab_map = true
