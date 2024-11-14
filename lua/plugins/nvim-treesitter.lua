@@ -29,6 +29,9 @@ return {
         "json",
         "php",
 
+        "nginx",
+        "svelte",
+
         -- general purpose
         "python",
 
