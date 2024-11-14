@@ -19,6 +19,7 @@ local servers = {
   "pyright",
   "jdtls",
   "cmake",
+  "spectral",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 

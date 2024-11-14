@@ -39,6 +39,7 @@ formatters_by_ft["java"] = { "google-java-format" }
 formatters_by_ft["xml"] = { "xmlformatter" }
 formatters_by_ft["php"] = { "phpactor" }
 formatters_by_ft["sh"] = { "shfmt" }
+formatters_by_ft["yaml"] = { "yamlfix" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,

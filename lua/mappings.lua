@@ -5,6 +5,7 @@ local nomap = vim.keymap.del
 
 local cmp = require "cmp"
 local harpoon = require "harpoon"
+local gitsigns = require "gitsigns"
 
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
@@ -71,6 +72,14 @@ nomap("n", "<leader>cm")
 map("n", "<leader>gt", function()
   delta_git_status()
 end, { desc = "View changed git files with delta pager" })
+
+map("n", "<leader>gb", function()
+  gitsigns.blame_line()
+end, { desc = "Show git blame" })
+
+map("n", "<leader>gt", function()
+  gitsigns.toggle_current_line_blame { full = true }
+end, { desc = "Toggle git blame current line" })
 
 map("n", "<leader>cm", function()
   delta_git_commits()

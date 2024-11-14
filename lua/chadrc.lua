@@ -46,6 +46,7 @@ M = {
       "docker-compose-language-service",
       "prettier",
       "cmake-language-server",
+      "spectral-language-server",
     },
   },
 }
