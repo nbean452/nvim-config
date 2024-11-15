@@ -69,7 +69,7 @@ end
 nomap("n", "<leader>gt")
 nomap("n", "<leader>cm")
 
-map("n", "<leader>gt", function()
+map("n", "<leader>gp", function()
   delta_git_status()
 end, { desc = "View changed git files with delta pager" })
 

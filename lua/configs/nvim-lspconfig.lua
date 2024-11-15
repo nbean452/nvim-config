@@ -8,7 +8,6 @@ local servers = {
   "cssls",
   "ts_ls",
   "eslint",
-  "jdtls",
   "docker_compose_language_service",
   "dockerls",
   "clangd",
