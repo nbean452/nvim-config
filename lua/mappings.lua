@@ -108,6 +108,9 @@ nomap("i", "<C-k>")
 -- map completion toggle to Ctrl+k
 map("i", "<C-k>", cmp_toggle, opts)
 
+map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Enable line wrap" })
+map("n", "<leader>ln", "<cmd>set wrap!<CR>", { desc = "Disable line wrap" })
+
 -- copilot
 -- vim.g.copilot_no_tab_map = true
 -- map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
