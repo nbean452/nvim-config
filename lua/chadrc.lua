@@ -7,7 +7,7 @@ local M = {}
 
 M = {
   base46 = {
-    theme = "doomchad",
+    theme = "oceanic-next",
     transparency = false,
 
     -- hl_override = {
