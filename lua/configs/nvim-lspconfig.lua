@@ -20,6 +20,7 @@ local servers = {
   "cmake",
   "spectral",
   "nginx_language_server",
+  "somesass_ls",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 

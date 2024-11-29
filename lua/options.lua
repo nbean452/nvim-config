@@ -19,6 +19,8 @@ o.lazyredraw = true -- equivalent to 'set lazyredraw'
 o.ttyfast = true -- equivalent to 'set ttyfast'
 
 o.wrap = false
+o.breakindent = true
+o.breakindentopt = "shift:4"
 
 ft.add {
   extension = {

@@ -7,7 +7,7 @@ local M = {}
 
 M = {
   base46 = {
-    theme = "oceanic-next",
+    theme = "chadracula",
     transparency = false,
 
     -- hl_override = {
@@ -48,6 +48,7 @@ M = {
       "cmake-language-server",
       "spectral-language-server",
       "nginx-language-server",
+      "some-sass-language-server",
     },
   },
 }
