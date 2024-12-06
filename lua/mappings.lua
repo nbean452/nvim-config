@@ -248,6 +248,8 @@ nomap("n", "<leader>fa")
 
 map("n", "<leader>fb", "<cmd>Telescope buffers layout_strategy=vertical<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>ff", "<cmd>Telescope find_files layout_strategy=vertical<cr>", { desc = "telescope find files" })
+map("n", "<leader>fs", "<cmd>Telescope search_history<cr>", { desc = "telescope search history" })
+map("n", "<leader>fc", "<cmd>Telescope command_history<cr>", { desc = "telescope command history" })
 map(
   "n",
   "<leader>fa",
