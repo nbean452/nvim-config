@@ -81,6 +81,24 @@ map("n", "<leader>gt", function()
   gitsigns.toggle_current_line_blame { full = true }
 end, { desc = "Toggle git blame current line" })
 
+map("n", "]c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "]c", bang = true }
+  else
+    gitsigns.nav_hunk "next"
+  end
+end, { desc = "Jump to next hunk" })
+
+map("n", "[c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "[c", bang = true }
+  else
+    gitsigns.nav_hunk "prev"
+  end
+end, { desc = "Jump to previous hunk" })
+
+map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
+
 map("n", "<leader>cm", function()
   delta_git_commits()
 end, { desc = "View git commits with delta pager" })
