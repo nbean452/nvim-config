@@ -98,6 +98,9 @@ map("n", "[c", function()
   end
 end, { desc = "Jump to previous hunk" })
 
+map("n", "<leader>da", "<CMD>DBUI<CR>", {desc="Open DB UI"})
+map("n", "<leader>ft", "<CMD>TodoTelescope<CR>", {desc="Search todos via Telescope"})
+
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 map("n", "zR", require("ufo").openAllFolds)
 map("n", "zM", require("ufo").closeAllFolds)
