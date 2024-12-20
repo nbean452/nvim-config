@@ -2,6 +2,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 local nomap = vim.keymap.del
+local create_autocmd = vim.api.nvim_create_autocmd
 
 local cmp = require "cmp"
 local harpoon = require "harpoon"
@@ -97,6 +98,10 @@ map("n", "[c", function()
   end
 end, { desc = "Jump to previous hunk" })
 
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+map("n", "zR", require("ufo").openAllFolds)
+map("n", "zM", require("ufo").closeAllFolds)
+
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
 
 map("n", "<leader>cm", function()
@@ -133,7 +138,7 @@ map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
 -- map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
 
 -- close references window after pressing enter
-vim.api.nvim_create_autocmd("FileType", {
+create_autocmd("FileType", {
   callback = close_references_window,
   pattern = "qf",
 })
@@ -260,15 +265,15 @@ map(
 -- harpoon extension
 harpoon:extend {
   UI_CREATE = function(cx)
-    vim.keymap.set("n", "<C-v>", function()
+    map("n", "<C-v>", function()
       harpoon.ui:select_menu_item { vsplit = true }
     end, { buffer = cx.bufnr })
 
-    -- vim.keymap.set("n", "<C-x>", function()
+    -- map("n", "<C-x>", function()
     --   harpoon.ui:select_menu_item { split = true }
     -- end, { buffer = cx.bufnr })
 
-    -- vim.keymap.set("n", "<C-t>", function()
+    -- map("n", "<C-t>", function()
     --   harpoon.ui:select_menu_item { tabedit = true }
     -- end, { buffer = cx.bufnr })
   end,
