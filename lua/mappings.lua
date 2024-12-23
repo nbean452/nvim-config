@@ -7,6 +7,7 @@ local create_autocmd = vim.api.nvim_create_autocmd
 local cmp = require "cmp"
 local harpoon = require "harpoon"
 local gitsigns = require "gitsigns"
+local todo_comments = require("todo-comments")
 
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
@@ -98,8 +99,17 @@ map("n", "[c", function()
   end
 end, { desc = "Jump to previous hunk" })
 
-map("n", "<leader>da", "<CMD>DBUI<CR>", {desc="Open DB UI"})
-map("n", "<leader>ft", "<CMD>TodoTelescope<CR>", {desc="Search todos via Telescope"})
+map("n", "<leader>ft", "<CMD>TodoTelescope<CR>", { desc = "Search todos via Telescope" })
+
+map("n", "]t", function()
+  todo_comments.jump_next()
+end, { desc = "Next todo comment" })
+
+map("n", "[t", function()
+  todo_comments.jump_prev()
+end, { desc = "Previous todo comment" })
+
+map("n", "<leader>da", "<CMD>DBUI<CR>", { desc = "Open DB UI" })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 map("n", "zR", require("ufo").openAllFolds)
