@@ -259,6 +259,9 @@ map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
 -- map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
 
+-- Telescope find marks in current buffer
+map("n", "<leader>fq", "<cmd>Telescope marks mark_type=local<CR>", vim.tbl_extend("force", opts, { desc = "Find marks in current buffer"}))
+
 -- change functionality for git
 nomap("n", "<leader>fb")
 nomap("n", "<leader>ff")
