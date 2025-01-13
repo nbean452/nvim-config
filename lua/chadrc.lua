@@ -7,7 +7,7 @@ local M = {}
 
 M = {
   base46 = {
-    theme = "doomchad",
+    theme = "monekai",
     transparency = false,
 
     -- hl_override = {

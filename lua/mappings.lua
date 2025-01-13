@@ -7,7 +7,7 @@ local create_autocmd = vim.api.nvim_create_autocmd
 local cmp = require "cmp"
 local harpoon = require "harpoon"
 local gitsigns = require "gitsigns"
-local todo_comments = require("todo-comments")
+local todo_comments = require "todo-comments"
 
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
@@ -147,8 +147,10 @@ map("i", "<C-k>", cmp_toggle, opts)
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
 
 -- copilot
--- vim.g.copilot_no_tab_map = true
--- map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
+vim.g.copilot_no_tab_map = true
+map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
+map("n", "<leader>ce", "<cmd>Copilot enable<CR>", { desc = "Enable Copilot suggestions", silent = true })
+map("n", "<leader>cd", "<cmd>Copilot disable<CR>", { desc = "Disable Copilot suggestions", silent = true })
 
 -- close references window after pressing enter
 create_autocmd("FileType", {
@@ -260,7 +262,12 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
 -- map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", opts)
 
 -- Telescope find marks in current buffer
-map("n", "<leader>fq", "<cmd>Telescope marks mark_type=local<CR>", vim.tbl_extend("force", opts, { desc = "Find marks in current buffer"}))
+map(
+  "n",
+  "<leader>fq",
+  "<cmd>Telescope marks mark_type=local<CR>",
+  vim.tbl_extend("force", opts, { desc = "Find marks in current buffer" })
+)
 
 -- change functionality for git
 nomap("n", "<leader>fb")
