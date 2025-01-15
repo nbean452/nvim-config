@@ -8,6 +8,7 @@ local cmp = require "cmp"
 local harpoon = require "harpoon"
 local gitsigns = require "gitsigns"
 local todo_comments = require "todo-comments"
+local dap = require "dap"
 
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
@@ -109,7 +110,19 @@ map("n", "[t", function()
   todo_comments.jump_prev()
 end, { desc = "Previous todo comment" })
 
+-- Setup `nvim-dadbod-ui` keymaps
 map("n", "<leader>da", "<CMD>DBUI<CR>", { desc = "Open DB UI" })
+
+-- Setup `nvim-dap` keymaps
+map("n", "<F1>", dap.continue, { desc = "Debugger - Continue" })
+map("n", "<F2>", dap.step_into, { desc = "Debugger - Step into" })
+map("n", "<F3>", dap.step_over, { desc = "Debugger - Step over" })
+map("n", "<F4>", dap.step_out, { desc = "Debugger - Step out" })
+map("n", "<F5>", dap.step_back, { desc = "Debugger - Step back" })
+map("n", "<F11>", dap.restart, { desc = "Debugger - Restart" })
+map("n", "<F12>", dap.terminate, { desc = "Debugger - Terminate" })
+
+map("n", "<leader>dp", dap.toggle_breakpoint, { desc = "Debugger - Toggle breakpoint" })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 map("n", "zR", require("ufo").openAllFolds)
