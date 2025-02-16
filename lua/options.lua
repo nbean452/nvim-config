@@ -5,8 +5,6 @@ require "nvchad.options"
 local o = vim.o
 local ft = vim.filetype
 
-o.cursorlineopt = "both" -- to enable cursorline!
-o.cursorcolumn = true -- to enable cursorcolumn!
 
 o.scrolloff = 999 -- equivalent to 'set scrolloff=999'
 
@@ -15,6 +13,8 @@ o.relativenumber = true -- equivalent to 'set rnu'
 
 o.linebreak = true -- equivalent to 'set linebreak'
 
+o.cursorlineopt = "both" -- to enable cursorline!
+o.cursorcolumn = true -- to enable cursorcolumn!
 o.lazyredraw = true -- equivalent to 'set lazyredraw'
 o.ttyfast = true -- equivalent to 'set ttyfast'
 
@@ -27,6 +27,8 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldenable = true
 o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+o.conceallevel = 3
 
 ft.add {
   extension = {

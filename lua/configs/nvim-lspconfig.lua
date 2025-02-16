@@ -21,6 +21,8 @@ local servers = {
   "spectral",
   "nginx_language_server",
   "somesass_ls",
+  "astro",
+  "prismals"
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 

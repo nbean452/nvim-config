@@ -9,6 +9,9 @@ return {
         "lua",
         "vimdoc",
 
+        -- writing resume lol
+        "latex",
+
         -- scripting languages
         "bash",
 
@@ -28,6 +31,7 @@ return {
         "tsx",
         "json",
         "php",
+        "prisma",
 
         "nginx",
         "svelte",

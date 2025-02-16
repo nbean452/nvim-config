@@ -19,6 +19,7 @@ return {
         { name = "nvim_lua" },
         { name = "path" },
         { name = "vim-dadbod-completion" }, -- source for `vim-dadbod-completion`
+        { name = 'orgmode' }
       }
       -- return the new table to be used
       return opts

@@ -72,6 +72,9 @@ end
 nomap("n", "<leader>gt")
 nomap("n", "<leader>cm")
 
+-- neorg telescope mappings
+map("n", "<leader>fn", "<Plug>(neorg.telescope.search_headings)")
+
 map("n", "<leader>gp", function()
   delta_git_status()
 end, { desc = "View changed git files with delta pager" })
@@ -169,6 +172,12 @@ map("n", "<leader>cd", "<cmd>Copilot disable<CR>", { desc = "Disable Copilot sug
 create_autocmd("FileType", {
   callback = close_references_window,
   pattern = "qf",
+})
+
+-- Prevent nvim-ufo to run on entering `org` files
+create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.org" },
+  command = "UfoDetach",
 })
 
 -- Disable default NVChad keybindings

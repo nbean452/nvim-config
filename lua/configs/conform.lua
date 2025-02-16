@@ -11,6 +11,7 @@ local eslint_prettier_filetypes = {
   "javascript",
   "typescriptreact",
   "javascriptreact",
+  "astro"
 }
 
 local clang_format_filetypes = {
