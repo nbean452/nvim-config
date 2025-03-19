@@ -11,7 +11,6 @@ local eslint_prettier_filetypes = {
   "javascript",
   "typescriptreact",
   "javascriptreact",
-  "astro"
 }
 
 local clang_format_filetypes = {
@@ -41,6 +40,7 @@ formatters_by_ft["xml"] = { "xmlformatter" }
 formatters_by_ft["php"] = { "phpactor" }
 formatters_by_ft["sh"] = { "shfmt" }
 formatters_by_ft["yaml"] = { "yamlfix" }
+formatters_by_ft["astro"] = { "prettier" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,

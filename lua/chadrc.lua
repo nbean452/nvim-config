@@ -7,8 +7,8 @@ local M = {}
 
 M = {
   base46 = {
-    theme = "monekai",
-    transparency = false,
+    theme = "github_dark",
+    transparency = true,
 
     -- hl_override = {
     -- 	Comment = { italic = true },

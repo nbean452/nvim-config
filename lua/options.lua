@@ -13,8 +13,8 @@ o.relativenumber = true -- equivalent to 'set rnu'
 
 o.linebreak = true -- equivalent to 'set linebreak'
 
-o.cursorlineopt = "both" -- to enable cursorline!
-o.cursorcolumn = true -- to enable cursorcolumn!
+-- o.cursorlineopt = "both" -- to enable cursorline!
+-- o.cursorcolumn = true -- to enable cursorcolumn!
 o.lazyredraw = true -- equivalent to 'set lazyredraw'
 o.ttyfast = true -- equivalent to 'set ttyfast'
 

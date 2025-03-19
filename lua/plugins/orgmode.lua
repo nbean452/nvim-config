@@ -11,8 +11,8 @@ return {
     config = function()
       local Menu = require "org-modern.menu"
 
-      require("org-bullets").setup()
-      require("headlines").setup()
+      -- require("org-bullets").setup()
+      -- require("headlines").setup()
 
       require("telescope").setup()
       require("telescope").load_extension "orgmode"
