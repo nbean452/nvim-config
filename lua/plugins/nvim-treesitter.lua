@@ -41,6 +41,7 @@ return {
 
         -- heavy stuff
         "c",
+        "c_sharp",
         "cmake",
         "cpp",
         "java",

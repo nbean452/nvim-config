@@ -49,6 +49,8 @@ M = {
       "spectral-language-server",
       "nginx-language-server",
       "some-sass-language-server",
+      "omnisharp",
+      "csharpier"
     },
   },
 }

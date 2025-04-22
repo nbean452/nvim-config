@@ -41,6 +41,7 @@ formatters_by_ft["php"] = { "phpactor", "pretty-php" }
 formatters_by_ft["sh"] = { "shfmt" }
 formatters_by_ft["yaml"] = { "yamlfix" }
 formatters_by_ft["astro"] = { "prettier" }
+formatters_by_ft["cs"] = { "csharpier" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,
