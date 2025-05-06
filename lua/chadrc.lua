@@ -23,7 +23,7 @@ M = {
   mason = {
     cmd = true,
     pkgs = {
-      "phpactor",
+      "intelephense",
       "lemminx",
       "xmlformatter",
       "clang-format",
