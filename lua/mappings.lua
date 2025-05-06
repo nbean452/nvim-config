@@ -205,9 +205,14 @@ create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- unmap default conform mapping
 nomap("n", "<leader>fm")
+-- format whole file in normal mode
 map("n", "<leader>fm", function()
   require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "General Format file" })
+-- format selection in visual mode
+map("", "<leader>fm", function()
+  require("conform").format { async = true, lsp_fallback = true }
+end, { desc = "Format selection" })
 
 -- Add current buffer to Harpoon list
 map("n", "<C-q>f", function()

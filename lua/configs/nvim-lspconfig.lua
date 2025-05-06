@@ -16,7 +16,7 @@ local servers = {
   "tailwindcss",
   "jsonls",
   "lemminx",
-  "phpactor",
+  "intelephense",
   "pyright",
   "jdtls",
   "cmake",
