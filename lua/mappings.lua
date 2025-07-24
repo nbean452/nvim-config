@@ -11,7 +11,7 @@ local todo_comments = require "todo-comments"
 local dap = require "dap"
 
 local previewers = require "telescope.previewers"
-local builtin = require "telescope.builtin"
+-- local builtin = require "telescope.builtin"
 
 local opts = { noremap = true, silent = true }
 
@@ -55,29 +55,45 @@ local delta = previewers.new_termopen_previewer {
   end,
 }
 
-local delta_git_status = function(opts)
-  opts = opts or {}
-  opts.previewer = delta
-
-  builtin.git_status(opts)
-end
-
-local delta_git_commits = function(opts)
-  opts = opts or {}
-  opts.previewer = delta
-
-  builtin.git_commits(opts)
-end
+-- local delta_git_status = function(opts)
+--   opts = opts or {}
+--   opts.previewer = delta
+--
+--   builtin.git_status(opts)
+-- end
+--
+-- local delta_git_commits = function(opts)
+--   opts = opts or {}
+--   opts.previewer = delta
+--
+--   builtin.git_commits(opts)
+-- end
 
 nomap("n", "<leader>gt")
 nomap("n", "<leader>cm")
 
 -- neorg telescope mappings
-map("n", "<leader>fn", "<Plug>(neorg.telescope.search_headings)")
+-- map("n", "<leader>fn", "<Plug>(neorg.telescope.search_headings)")
 
-map("n", "<leader>gp", function()
-  delta_git_status()
-end, { desc = "View changed git files with delta pager" })
+-- map("n", "<leader>gp", function()
+--   -- delta_git_status()
+-- end, { desc = "View changed git files with delta pager" })
+
+-- override the default terminal toggle keybinding
+nomap({ "n",
+  "t",
+}, "<A-i>")
+map({ "n", "t" }, "<A-i>", function()
+    require("nvchad.term").toggle { pos = "float", id = "floatTerm", float_opts={
+        row = 0.35,
+        col = 0.05,
+        width = 0.9,
+        height = 0.9
+    }}
+end, { desc = "terminal toggle floating term" })
+
+
+map("n", "<leader>gp", "<cmd>Telescope git_status<CR>", { desc = "View changed git files with delta pager" })
 
 map("n", "<leader>gb", function()
   gitsigns.blame_line()
@@ -104,6 +120,7 @@ map("n", "[c", function()
 end, { desc = "Jump to previous hunk" })
 
 map("n", "<leader>ft", "<CMD>TodoTelescope<CR>", { desc = "Search todos via Telescope" })
+map("n", "<leader>fd", "<CMD>Telescope diagnostics<CR>", { desc = "Search diagnostics via Telescope" })
 
 map("n", "]t", function()
   todo_comments.jump_next()
@@ -162,6 +179,9 @@ map("i", "<C-k>", cmp_toggle, opts)
 
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
 
+map("n", "<leader>ss", "<cmd>set shiftwidth=2 tabstop=2 expandtab<CR>", { desc = "Set 2 tabs" })
+map("n", "<leader>sl", "<cmd>set shiftwidth=4 tabstop=4 expandtab<CR>", { desc = "Set 4 tabs" })
+
 -- copilot
 vim.g.copilot_no_tab_map = true
 map("i", "<C-f>", 'copilot#Accept("\\<CR>")', { replace_keycodes = false, silent = true, expr = true })
@@ -169,10 +189,10 @@ map("n", "<leader>ce", "<cmd>Copilot enable<CR>", { desc = "Enable Copilot sugge
 map("n", "<leader>cd", "<cmd>Copilot disable<CR>", { desc = "Disable Copilot suggestions", silent = true })
 
 -- close references window after pressing enter
-create_autocmd("FileType", {
-  callback = close_references_window,
-  pattern = "qf",
-})
+-- create_autocmd("FileType", {
+--   callback = close_references_window,
+--   pattern = "qf",
+-- })
 
 -- Prevent nvim-ufo to run on entering `org` files
 create_autocmd({ "BufEnter", "BufWinEnter" }, {
@@ -297,11 +317,13 @@ map(
 )
 
 -- change functionality for git
-nomap("n", "<leader>fb")
+-- nomap("n", "<leader>fb")
 nomap("n", "<leader>ff")
 nomap("n", "<leader>fa")
 
-map("n", "<leader>fb", "<cmd>Telescope buffers layout_strategy=vertical<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "zen mode" })
+map("n", "<leader><leader>", "<cmd>Telescope buffers layout_strategy=vertical<CR>", { desc = "telescope find buffers" })
+map("n", "<leader><leader>", "<cmd>Telescope buffers layout_strategy=vertical<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>ff", "<cmd>Telescope find_files layout_strategy=vertical<cr>", { desc = "telescope find files" })
 map("n", "<leader>fs", "<cmd>Telescope search_history<cr>", { desc = "telescope search history" })
 map("n", "<leader>fc", "<cmd>Telescope command_history<cr>", { desc = "telescope command history" })
