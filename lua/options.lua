@@ -2,8 +2,12 @@ require "nvchad.options"
 
 -- add yours here!
 
+local g = vim.g
 local o = vim.o
 local ft = vim.filetype
+
+-- https://github.com/kdheepak/lazygit.nvim#usage
+g.lazygit_floating_window_scaling_factor = 1.0 -- scaling factor for floating window
 
 o.scrolloff = 999 -- equivalent to 'set scrolloff=999'
 
