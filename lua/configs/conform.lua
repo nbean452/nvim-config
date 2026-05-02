@@ -42,6 +42,7 @@ formatters_by_ft["sh"] = { "shfmt" }
 formatters_by_ft["yaml"] = { "yamlfix" }
 formatters_by_ft["astro"] = { "prettier" }
 formatters_by_ft["cs"] = { "csharpier" }
+formatters_by_ft["sql"] = { "sleek" }
 
 local options = {
   formatters_by_ft = formatters_by_ft,
