@@ -10,7 +10,7 @@ return {
         "vimdoc",
 
         -- writing resume lol
-        "latex",
+        -- "latex",
 
         -- scripting languages
         "bash",
