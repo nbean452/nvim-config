@@ -92,6 +92,24 @@ map({ "n", "t" }, "<A-i>", function()
     }}
 end, { desc = "terminal toggle floating term" })
 
+-- params -> "absolute" or "relative"
+local function copy_path(params)
+
+  local path
+
+  if params == "absolute" then
+    path = vim.fn.expand("%:p")
+  else
+    path = vim.fn.expand("%:.")
+  end
+
+  vim.fn.setreg("+", path)
+
+  print(string.format("Copied \"%s\" to clipboard", path))
+end
+
+map("n", "<leader>cp", function () copy_path "relative" end, { desc = "Copy relative buffer path to clipboard" })
+map("n", "<leader>co", function () copy_path "absolute" end, { desc = "Copy absolute buffer path to clipboard" })
 
 map("n", "<leader>gp", "<cmd>Telescope git_status<CR>", { desc = "View changed git files with delta pager" })
 
@@ -245,10 +263,11 @@ map("n", "<C-q>f", function()
 
   if name == nil then
     harpoon:list():add()
-    print("added " .. bufname)
+
+    print(string.format("Added \"%s\" to harpoon list", bufname))
   else
     harpoon:list():remove()
-    print("removed " .. bufname)
+    print(string.format("Removed \"%s\" from harpoon list", bufname))
   end
 end, { desc = "Add/remove current buffer to harpoon list" })
 
