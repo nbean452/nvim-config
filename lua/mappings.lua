@@ -92,9 +92,13 @@ map({ "n", "t" }, "<A-i>", function()
     }}
 end, { desc = "terminal toggle floating term" })
 
--- params -> "absolute" or "relative"
-local function copy_path(params)
+local function set_register_and_print(value)
+  vim.fn.setreg("+", value)
+  print(string.format("Copied \"%s\" to clipboard", value))
+end
 
+-- params -> "absolute" or "relative"
+local function get_path(params)
   local path
 
   if params == "absolute" then
@@ -103,13 +107,61 @@ local function copy_path(params)
     path = vim.fn.expand("%:.")
   end
 
-  vim.fn.setreg("+", path)
-
-  print(string.format("Copied \"%s\" to clipboard", path))
+  return path
 end
 
-map("n", "<leader>cp", function () copy_path "relative" end, { desc = "Copy relative buffer path to clipboard" })
-map("n", "<leader>co", function () copy_path "absolute" end, { desc = "Copy absolute buffer path to clipboard" })
+-- params -> "normal" for normal mode, "visual" for visual mode
+local function get_line_selection(mode)
+  local line_str
+  if mode == "visual" then
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
+    end
+    if start_line == end_line then
+      line_str = string.format("L%d", start_line)
+    else
+      line_str = string.format("L%d-L%d", start_line, end_line)
+    end
+  else
+    line_str = string.format("L%d", vim.fn.line("."))
+  end
+
+  return line_str
+end
+
+map("n", "<leader>co", function ()
+  local path = get_path("absolute")
+  set_register_and_print(path)
+end, { desc = "Copy absolute buffer path to clipboard" })
+map("n", "<leader>cp", function ()
+  local path = get_path("relative")
+  set_register_and_print(path)
+end, { desc = "Copy relative buffer path to clipboard" })
+map("n", "<leader>cl", function() 
+  local line_str = get_line_selection("normal")
+  set_register_and_print(line_str)
+end, { desc = "Copy current line number to clipboard" })
+
+map("v", "<leader>co", function()
+  local path = get_path("absolute")
+  local line_str = get_line_selection("visual")
+
+  local combined_str = string.format("%s:%s", path, line_str)
+  set_register_and_print(combined_str)
+end, { desc = "Copy absolute buffer path with selected lines to clipboard" })
+map("v", "<leader>cp", function()
+  local path = get_path("relative")
+  local line_str = get_line_selection("visual")
+
+  local combined_str = string.format("%s:%s", path, line_str)
+  set_register_and_print(combined_str)
+end, { desc = "Copy relative buffer path with selected lines to clipboard" })
+map("v", "<leader>cl", function()
+  local line_str = get_line_selection("visual")
+  set_register_and_print(line_str)
+end, { desc = "Copy selection line range to clipboard" })
 
 map("n", "<leader>gp", "<cmd>Telescope git_status<CR>", { desc = "View changed git files with delta pager" })
 
